@@ -1,5 +1,6 @@
 import { useState, useMemo } from "react";
 import type { Channel } from "../shared/types";
+import { formatKHz } from "../shared/parser";
 
 interface Props {
   channels: Channel[];
@@ -87,7 +88,7 @@ export default function ChannelList({ channels, onAdd, onEdit, onDelete }: Props
   }
 
   function formatFreq(hz: number): string {
-    return (hz / 1_000_000).toFixed(4) + " MHz";
+    return formatKHz(hz) + " kHz";
   }
 
   return (

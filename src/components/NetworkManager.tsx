@@ -1,5 +1,6 @@
 import { useState, useMemo } from "react";
 import type { Network, Channel } from "../shared/types";
+import { formatKHz } from "../shared/parser";
 
 interface Props {
   networks: Network[];
@@ -94,7 +95,7 @@ export default function NetworkManager({ networks, channels, onUpdateNetworks }:
                 <option value="">-- Select channel --</option>
                 {channelsNotInNet.map((ch) => (
                   <option key={ch.name} value={ch.name}>
-                    {ch.name} ({(ch.rxFrequency / 1_000_000).toFixed(4)} MHz)
+                    {ch.name} ({formatKHz(ch.rxFrequency)} kHz)
                   </option>
                 ))}
               </select>
@@ -131,7 +132,7 @@ export default function NetworkManager({ networks, channels, onUpdateNetworks }:
                       </td>
                       <td>
                         {ch
-                          ? `${(ch.rxFrequency / 1_000_000).toFixed(4)} MHz`
+                          ? `${formatKHz(ch.rxFrequency)} kHz`
                           : "—"}
                       </td>
                       <td>

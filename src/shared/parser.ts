@@ -214,3 +214,10 @@ export function importFromCsv(csv: string): Channel[] {
   }
   return channels;
 }
+
+export function formatKHz(hz: number): string {
+  return (hz / 1000).toLocaleString("en-US", {
+    minimumFractionDigits: 1,
+    maximumFractionDigits: 1,
+  });
+}

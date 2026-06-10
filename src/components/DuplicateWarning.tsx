@@ -1,4 +1,5 @@
 import type { DuplicateInfo } from "../hooks/useCodeplug";
+import { formatKHz } from "../shared/parser";
 
 interface Props {
   duplicates: DuplicateInfo | null;
@@ -18,7 +19,7 @@ export default function DuplicateWarning({ duplicates }: Props) {
           <ul>
             {duplicates.frequency.map((d, i) => (
               <li key={i}>
-                {(d.freq / 1_000_000).toFixed(4)} MHz — {d.channels.join(", ")}
+                {formatKHz(d.freq)} kHz — {d.channels.join(", ")}
               </li>
             ))}
           </ul>
